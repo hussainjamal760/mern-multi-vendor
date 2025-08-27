@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import app from './app.js'
+import { connectDatabase } from "./db/database.js";
 
 if(process.env.NODE_ENV !== "PRODUCTION"){
     dotenv.config({
@@ -11,6 +12,9 @@ process.on("uncaughtException" , (err)=>{
     console.log(`Error: ${err.message}`);
     console.log(`Shutting down the server for handling exception`);
 })
+
+
+connectDatabase()
 
 const PORT = process.env.PORT || 8000;
 
