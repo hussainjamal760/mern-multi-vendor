@@ -15,12 +15,32 @@ const SignUp = () => {
     setAvatar(file);
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    const config = {headers : {"Content-type" : "multipart/form-data"}}
+
+    const newForm = new FormData()
+
+    newForm.append("file" , avatar)
+    newForm.append("name" , name)
+    newForm.append("email" , email)
+    newForm.append("password" , password)
+
+    axios.post(`${server}/user/create-user` , newForm,config).then((res)=>{
+        console.log(res);
+    }).catch((err) =>{
+        console.log(err);
+        
+    } )
+
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-screen space-y-8 bg-gray-100">
       <h1 className="text-4xl font-bold text-center">Register as New User</h1>
 
       <div className="bg-gray-50 shadow-lg rounded-2xl p-8 w-96">
-        <form className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div className="flex flex-col">
             <label htmlFor="fullname" className="mb-1 font-medium">
               Full Name
