@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   email:{
     type: String,
     required: [true, "Please enter your email!"],
+    unique: true,
   },
   password:{
     type: String,
@@ -49,11 +50,11 @@ const userSchema = new mongoose.Schema({
   avatar:{
     public_id: {
       type: String,
-      required: true,
+      required: [true, "Avatar public_id is required"], // Keep this required
     },
     url: {
       type: String,
-      required: true,
+      required: [true, "Avatar URL is required"], // Keep this required
     },
  },
  createdAt:{
