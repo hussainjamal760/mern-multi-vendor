@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
+import server from '../server.js'
+import {axios} from 'axios'
 
 const SignUp = () => {
   const [name, setName] = useState(""); 
